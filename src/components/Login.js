@@ -9,6 +9,8 @@ const Login = () => {
 
     // Passed down from the Outlet context in App.js
     const { setJwtToken } = useOutletContext()
+    const { setAlertMessage } = useOutletContext()
+    const { setAlertClassName } = useOutletContext()
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -16,6 +18,11 @@ const Login = () => {
 
         if (email === "admin@example.com") {
             setJwtToken("ey")
+            setAlertMessage("")
+            setAlertClassName("d-none")
+        } else {
+            setAlertMessage("Invalid credentials")
+            setAlertClassName("alert-danger")
         }
     }
 
