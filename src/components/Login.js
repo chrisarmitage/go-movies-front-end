@@ -1,15 +1,21 @@
 import { useState } from "react"
+import { useOutletContext } from "react-router-dom"
+import App from "../App"
 import Input from "./form/Input"
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    // Passed down from the Outlet context in App.js
+    const { setJwtToken } = useOutletContext()
+
     const handleSubmit = (event) => {
         event.preventDefault()
+        console.log("[email, pass]", email, password)
 
         if (email === "admin@example.com") {
-            
+            setJwtToken("ey")
         }
     }
 
@@ -26,7 +32,7 @@ const Login = () => {
                         className="form-control"
                         name="email"
                         autoComplete="off"
-                        onChance={(event) => setEmail(event.target.value)}
+                        onChange={(event) => setEmail(event.target.value)}
                     />
                     <Input
                         title="Password"
@@ -34,7 +40,7 @@ const Login = () => {
                         className="form-control"
                         name="password"
                         autoComplete="off"
-                        onChance={(event) => setPassword(event.target.value)}
+                        onChange={(event) => setPassword(event.target.value)}
                     />
                     <hr />
                     <input

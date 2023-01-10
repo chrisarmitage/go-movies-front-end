@@ -39,7 +39,10 @@ function App() {
         </div>
 
         <div className="col-md-10">
-          <Outlet />
+          {/* Passes the jwtToken and setJwtToken down to all child pages */}
+          <Outlet context={{
+            jwtToken, setJwtToken
+          }}/>
         </div>
       </div>
     </div>
