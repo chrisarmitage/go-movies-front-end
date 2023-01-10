@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useOutletContext } from "react-router-dom"
+import { useNavigate, useOutletContext } from "react-router-dom"
 import App from "../App"
 import Input from "./form/Input"
 
@@ -12,6 +12,8 @@ const Login = () => {
     const { setAlertMessage } = useOutletContext()
     const { setAlertClassName } = useOutletContext()
 
+    const navigate = useNavigate()
+
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log("[email, pass]", email, password)
@@ -20,6 +22,7 @@ const Login = () => {
             setJwtToken("ey")
             setAlertMessage("")
             setAlertClassName("d-none")
+            navigate("/")
         } else {
             setAlertMessage("Invalid credentials")
             setAlertClassName("alert-danger")
