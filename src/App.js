@@ -10,7 +10,19 @@ function App() {
   const navigate = useNavigate()
 
   const logout = () => {
-    setJwtToken("")
+    const requestOptions = {
+      method: "GET",
+      credentials: "include",
+    }
+
+    fetch (`/logout`, requestOptions)
+      .catch(error => {
+        console.log('error logging out', error)
+      })
+      .finally(() => {
+        setJwtToken("")
+      })
+
     navigate("/login")
   }
 
@@ -43,7 +55,7 @@ function App() {
         <div className="col text-end">
           {jwtToken === ""
           ? <Link to="/login"><span className="badge bg-success">Login</span></Link>
-          : <a href="!#" onClick={logout}><span className="badge bg-danger">Logout</span></a>
+          : <a href onClick={logout}><span className="badge bg-danger">Logout</span></a>
           }
         </div>
         <hr className="mb-3" />
