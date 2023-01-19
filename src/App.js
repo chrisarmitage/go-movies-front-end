@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Alert from './components/Alert';
 
@@ -25,6 +25,41 @@ function App() {
 
     navigate("/login")
   }
+
+  const toggleRefresh = useCallback((status) => {
+    console.log('clicked')
+
+    if (status) {
+      console.log('turn on ticking')
+      let i = setInterval(() => {
+        console.log('every ten minutes')
+
+        // Duplicated code
+        const requestOptions = {
+          method: "GET",
+          credentials: "include",
+        }
+  
+
+        fetch(`/refresh`, requestOptions)
+          .then(response => response.json())
+          .then (data => {
+            if (data.access_token) {
+              setJwtToken(data.access_token)
+            }
+          })
+          .catch(error => {
+            console.log("User is not logged in", error)
+          })
+      }, 10 * 60 * 1000) 
+      setTickInterval(i)
+      console.log('setting tickInterval to i')
+    } else {
+      console.log('turn off ticking')
+      setTickInterval(null)
+      clearInterval(tickInterval)
+    }
+  }, [tickInterval])
 
   useEffect(() => {
     if (jwtToken === "") {
