@@ -128,7 +128,7 @@ function App() {
           {/* Passes the jwtToken and setJwtToken down to all child pages */}
           <Outlet context={{
             jwtToken, setJwtToken,
-            setAlertMessage, setAlertClassName
+            setAlertMessage, setAlertClassName, toggleRefresh
           }}/>
         </div>
       </div>
