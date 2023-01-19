@@ -65,6 +65,7 @@ function App() {
 
   useEffect(() => {
     if (jwtToken === "") {
+      // Duplicated code
       const requestOptions = {
         method: "GET",
         credentials: "include",
@@ -75,13 +76,15 @@ function App() {
         .then (data => {
           if (data.access_token) {
             setJwtToken(data.access_token)
+            toggleRefresh(true)
           }
         })
         .catch(error => {
           console.log("User is not logged in", error)
         })
     }
-  }, [jwtToken])
+  }, [jwtToken, toggleRefresh])
+
 
   return (
     <div className="container">
