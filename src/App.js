@@ -23,6 +23,7 @@ function App() {
       })
       .finally(() => {
         setJwtToken("")
+        toggleRefresh(false)
       })
 
     navigate("/login")
