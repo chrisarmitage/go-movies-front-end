@@ -121,6 +121,7 @@ function App() {
         </div>
 
         <div className="col-md-10">
+          {/* <a className='btn btn-outline-secondary' href='#!' onClick={toggleRefresh}>Toggle ticking</a> */}
           <Alert
             message={alertMessage}
             className={alertClassName}
