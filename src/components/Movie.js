@@ -8,38 +8,44 @@ const Movie = () => {
     let { id } = useParams()
 
     useEffect(() => {
-        let movies = [
-            {
-                id: 1,
-                title: "Highlander",
-                release_date: "1986-03-07",
-                runtime: 116,
-                mpaa_rating: "R",
-                description: "Description of film",
-            },
-            {
-                id: 2,
-                title: "Raiders of the Lost Ark",
-                release_date: "1981-06-12",
-                runtime: 115,
-                mpaa_rating: "PG-13",
-                description: "Description of film",
-            },
-        ]
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json")
 
-        const movie = movies.find(movie => {
-            return movie.id == id
-        })
+        const rqOpts = {
+            method: "GET",
+            headers: headers,
+        }
 
-        setMovie(movie)
+        fetch(`/movies/${id}`, rqOpts)
+            .then(rs => rs.json())
+            .then(data => { setMovie(data) })
+            .catch(err => { console.error(err) })
     }, [id])
+
+    if (movie.genres) {
+        // Cast to array (i think)
+        movie.genres = Object.values(movie.genres)
+    } else {
+        movie.genres = []
+    }
 
     return (
         <>
             <div>
                 <h2>Movie: {movie.title}</h2>
                 <small><em>{movie.release_date}, {movie.runtime} minutes, rated {movie.mpaa_rating}</em></small>
+                <br />
+                {movie.genres.map(g => (
+                    <span key={g.genre} className="badge bg-secondary me-2">{g.genre}</span>
+                ))}
                 <hr />
+
+                {movie.image !== "" && 
+                    <div className="mb-3">
+                        <img src={`https://image.tmdb.org/t/p/w200/${movie.image}`} alt="poster" />
+                    </div>
+                }
+
                 <p>{movie.description}</p>
             </div>
         </>
