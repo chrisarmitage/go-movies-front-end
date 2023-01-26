@@ -203,7 +203,7 @@ const EditMovie = () => {
                     <Select
                         title={"MPAA Rating"}
                         name={"mpaa_rating"}
-                        value={movie.runtime}
+                        value={movie.mpaa_rating}
                         options={mpaaOptions}
                         placeholder={"Choose..."}
                         onChange={handleChange("mpaa_rating")}
