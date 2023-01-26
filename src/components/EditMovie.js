@@ -162,7 +162,7 @@ const EditMovie = () => {
                 <h2>Add / Edit Movie</h2>
                 <hr />
 
-                <pre>{JSON.stringify(movie, null, 3)}</pre>
+                {/* <pre>{JSON.stringify(movie, null, 3)}</pre> */}
 
                 <form onSubmit={handleSubmit}>
                     <input type="hidden" id="id" name="id" value={movie.id} />
