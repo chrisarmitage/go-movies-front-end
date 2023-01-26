@@ -122,6 +122,41 @@ const EditMovie = () => {
         if (errors.len > 0) {
             return false
         }
+
+        // Passed all validation, time to save
+        const headers = new Headers()
+        headers.append("Content-Type", "application/json")
+        headers.append("Authorization", "Bearer " + jwtToken)
+
+        let method = "PUT"
+        if (movie.id > 0) {
+            method = "PATCH"
+        }
+
+        const rqBody = movie
+        // Convert the release date and runtime
+        rqBody.release_date = new Date(movie.release_date)
+        rqBody.runtime = parseInt(movie.runtime, 10)
+
+        const rqOpts = {
+            method: method,
+            headers: headers,
+            body: JSON.stringify(rqBody),
+            credentials: "include",
+        }
+
+        fetch(`/admin/movies/${movie.id}`, rqOpts)
+            .then(rs => rs.json())
+            .then(data => {
+                if (data.error) {
+                    console.log(data.error)
+                } else {
+                    navigate("/manage-catalog")
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
     })
 
     const handleChange = () => (event) => {
