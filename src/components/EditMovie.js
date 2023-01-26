@@ -143,7 +143,7 @@ const EditMovie = () => {
                         name={"title"}
                         value={movie.title}
                         onChange={handleChange("title")}
-                        errorDiv={hasError("title") ? "test-danger" : "d-none"}
+                        errorDiv={hasError("title") ? "text-danger" : "d-none"}
                         errorMsg={"Please enter a title"}
                     />
 
@@ -154,7 +154,7 @@ const EditMovie = () => {
                         name={"release_date"}
                         value={movie.release_date}
                         onChange={handleChange("release_date")}
-                        errorDiv={hasError("release_date") ? "test-danger" : "d-none"}
+                        errorDiv={hasError("release_date") ? "text-danger" : "d-none"}
                         errorMsg={"Please enter a release date"}
                     />
 
@@ -165,7 +165,7 @@ const EditMovie = () => {
                         name={"runtime"}
                         value={movie.runtime}
                         onChange={handleChange("runtime")}
-                        errorDiv={hasError("runtime") ? "test-danger" : "d-none"}
+                        errorDiv={hasError("runtime") ? "text-danger" : "d-none"}
                         errorMsg={"Please enter a runtime"}
                     />
 
@@ -176,7 +176,7 @@ const EditMovie = () => {
                         options={mpaaOptions}
                         placeholder={"Choose..."}
                         onChange={handleChange("mpaa_rating")}
-                        errorDiv={hasError("mpaa_rating") ? "test-danger" : "d-none"}
+                        errorDiv={hasError("mpaa_rating") ? "text-danger" : "d-none"}
                         errorMsg={"Please select a rating"}
                     />
 
@@ -186,7 +186,7 @@ const EditMovie = () => {
                         value={movie.description}
                         rows={"3"}
                         onChange={handleChange("description")}
-                        errorDiv={hasError("description") ? "test-danger" : "d-none"}
+                        errorDiv={hasError("description") ? "text-danger" : "d-none"}
                         errorMsg={"Please enter a description"}
                     />
 
