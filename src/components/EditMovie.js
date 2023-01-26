@@ -91,6 +91,26 @@ const EditMovie = () => {
     const handleSubmit = (event => {
         event.preventDefault()
 
+        let errors = []
+        let required = [
+            { field: movie.title, name: "title", },
+            { field: movie.release_date, name: "release_date", },
+            { field: movie.runtime, name: "runtime", },
+            { field: movie.description, name: "description", },
+            { field: movie.mpaa_rating, name: "mpaa_rating", },
+        ]
+
+        required.forEach(function(obj) {
+            if (obj.field === "") {
+                errors.push(obj.name)
+            }
+        })
+
+        setErrors(errors)
+
+        if (errors.len > 0) {
+            return false
+        }
     })
 
     const handleChange = () => (event) => {
@@ -209,6 +229,9 @@ const EditMovie = () => {
                             )}
                         </>
                     }
+
+                    <hr />
+                    <button className="btn btn-primary">Save</button>
                 </form>
             </div>
         </>
