@@ -85,6 +85,42 @@ const EditMovie = () => {
                 .catch(err => console.error(err))
         } else {
             // Edit a movie
+            const headers = new Headers()
+            headers.append("Content-Type", "application/json")
+            headers.append("Authorization", "Bearer " + jwtToken)
+
+            const rqOpts = {
+                method: "GET",
+                headers: headers,
+                credentials: "include"
+            }
+
+            fetch(`/admin/movies/${id}`, rqOpts)
+                .then(rs => {
+                    if (rs.status !== 200) {
+                        setError("Invalid response code: " + rs.status)
+                    }
+                    return rs.json()
+                })
+                .then(data => {
+                    data.movie.release_date = new Date(data.movie.release_date).toISOString().split('T')[0]
+
+                    const checks = [];
+
+                    data.genres.forEach(g => {
+                        if (data.movie.genres_array.indexOf(g.id) !== -1) {
+                            checks.push({id: g.id, checked: true, genre: g.genre})
+                        } else {
+                            checks.push({id: g.id, checked: false, genre: g.genre})
+                        }
+                    })
+
+                    setMovie({
+                        ...data.movie,
+                        genres: checks
+                    })
+                })
+                .catch(err => console.error(err))
         }
 
     }, [jwtToken, navigate, id])
