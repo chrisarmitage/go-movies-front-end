@@ -33,7 +33,7 @@ const Movie = () => {
         <>
             <div>
                 <h2>Movie: {movie.title}</h2>
-                <small><em>{movie.release_date}, {movie.runtime} minutes, rated {movie.mpaa_rating}</em></small>
+                <small><em>{new Date(movie.release_date).toLocaleDateString()}, {movie.runtime} minutes, rated {movie.mpaa_rating}</em></small>
                 <br />
                 {movie.genres.map(g => (
                     <span key={g.genre} className="badge bg-secondary me-2">{g.genre}</span>

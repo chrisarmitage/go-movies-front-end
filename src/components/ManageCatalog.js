@@ -49,7 +49,7 @@ const ManageCatalog = () => {
                                 <td>
                                     <Link to={`/admin/movie/${m.id}`}>{m.title}</Link>
                                 </td>
-                                <td>{m.release_date}</td>
+                                <td>{new Date(m.release_date).toLocaleDateString()}</td>
                                 <td>{m.mpaa_rating}</td>
                             </tr>
                         ))}
