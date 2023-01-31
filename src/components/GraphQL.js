@@ -31,7 +31,7 @@ const GraphQL = () => {
             body: payload
         }
 
-        fetch(`/graph`, rqOptions)
+        fetch(`${process.env.REACT_APP_BACKEND}/graph`, rqOptions)
             .then(rs => rs.json())
             .then(data => {
                 let list = Object.values(data.data.search) // `search` matches the `search` command
@@ -77,7 +77,7 @@ const GraphQL = () => {
             body: payload
         }
 
-        fetch(`/graph`, rqOptions)
+        fetch(`${process.env.REACT_APP_BACKEND}/graph`, rqOptions)
             .then(rs => rs.json())
             .then(data => {
                 let list = Object.values(data.data.list) // `list` matches the `list` command

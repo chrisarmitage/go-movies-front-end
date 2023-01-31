@@ -16,7 +16,7 @@ const Movie = () => {
             headers: headers,
         }
 
-        fetch(`/movies/${id}`, rqOpts)
+        fetch(`${process.env.REACT_APP_BACKEND}/movies/${id}`, rqOpts)
             .then(rs => rs.json())
             .then(data => { setMovie(data) })
             .catch(err => { console.error(err) })

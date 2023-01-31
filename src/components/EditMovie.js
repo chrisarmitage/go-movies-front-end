@@ -68,7 +68,7 @@ const EditMovie = () => {
                 headers: headers,
             }
     
-            fetch(`http://localhost:8080/genres`, rqOpts)
+            fetch(`${process.env.REACT_APP_BACKEND}/genres`, rqOpts)
                 .then(rs => rs.json())
                 .then(data => {
                     const checks = [];
@@ -95,7 +95,7 @@ const EditMovie = () => {
                 credentials: "include"
             }
 
-            fetch(`/admin/movies/${id}`, rqOpts)
+            fetch(`${process.env.REACT_APP_BACKEND}/admin/movies/${id}`, rqOpts)
                 .then(rs => {
                     if (rs.status !== 200) {
                         setError("Invalid response code: " + rs.status)
@@ -181,7 +181,7 @@ const EditMovie = () => {
             credentials: "include",
         }
 
-        fetch(`/admin/movies/${movie.id}`, rqOpts)
+        fetch(`${process.env.REACT_APP_BACKEND}/admin/movies/${movie.id}`, rqOpts)
             .then(rs => rs.json())
             .then(data => {
                 if (data.error) {
@@ -243,7 +243,7 @@ const EditMovie = () => {
                     headers: headers,
                     credentials: "include",
                 }
-              fetch(`/admin/movies/${movie.id}`, rqOpts)
+              fetch(`${process.env.REACT_APP_BACKEND}/admin/movies/${movie.id}`, rqOpts)
                 .then(rs => rs.json())
                 .then(data => {
                     if (data.error) {
